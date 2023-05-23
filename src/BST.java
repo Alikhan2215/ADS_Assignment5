@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+
+import static java.lang.Math.round;
+
 public class BST<K extends Comparable<K>, V> {
     private Node root;
     private class Node{
@@ -145,5 +148,26 @@ public class BST<K extends Comparable<K>, V> {
             return 0;
         }
         return 1 + size(node.left) + size(node.right);
+    }
+    private int sizeH(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + sizeH(node.left);
+    }
+
+    public int height(){
+        return height(root);
+    }
+    private int height(Node node){
+        if (node == null){
+            return 0;
+        }
+        if(size(node.left) > size(node.right)){
+            return (sizeH(node.left));
+        }
+        else{
+            return (sizeH(node.right));
+        }
     }
 }
